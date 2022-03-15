@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Абвгдейка-пасхалка
+{% endblock %}
+
+{% block scripts %}
+  <link rel="stylesheet" href="{% static 'styles/snake.css' %}">
+{% endblock %}
+
+{% block content %}
+  <canvas id="game" width="608" height="608"></canvas>
+  <script src="{% static 'js/game.js' %}"></script>
+{% endblock %}

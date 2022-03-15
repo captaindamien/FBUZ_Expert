@@ -1,0 +1,53 @@
+<table class="table">
+    <tr>
+        <th>
+            № п/п
+        </th>
+        <th>
+            наименование ЮЛ, ИП, объекта
+        </th>
+        <th>
+            ФИО исполнителя
+        </th>
+        <th>
+            ФИО получателя
+        </th>
+        <th>
+            ФИО создателя
+        </th>
+        <th>
+            Дата создания
+        </th>
+        <th>
+            Прикрепленные файлы
+        </th>
+    </tr>
+    {% for expertise in expertises %}
+        <tr data-href="expertise/{{expertise.pk}}">
+            <td>
+                {{expertise.exp_number}}
+            </td>
+            <td>
+                {{expertise.object_name}}
+            </td>
+            <td>
+                {{expertise.executor_name}}
+            </td>
+            <td>
+                {{expertise.recipient_name}}
+            </td>
+            <td>
+                {{expertise.creator.first_name}}
+                {{expertise.creator.last_name}}
+            </td>
+            <td>
+                {{expertise.created|date:"d.m.Y"}}
+            </td>
+            <td>
+                {% if expertise.media %}
+                    <a href="media/{{ expertise.media }}" class="content_file" target="_blank">Скачать файл</a>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+</table>

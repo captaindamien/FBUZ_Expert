@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/styles.css' %}">
+    {% block scripts %}{% endblock %}
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="menu">
+                <a class="header_link menu_home" href="{% url 'index' %}">
+                    <p>Главная</p>
+                </a>
+                <a class="header_link menu_create" href="{% url 'add_exp' %}">
+                    <p>Добавить экспертизу</p>
+                </a>
+                <a class="header_link menu_export" href="{% url 'export' %}">
+                    <p>Экспорт</p>
+                </a>
+            </div>
+            {% if user.is_authenticated %}
+                <div class="account">
+                    {% if user.is_staff == True %}
+                        <a class="header_link" href="{% url 'admin:index' %}">{{user.first_name}} {{user.last_name}} <img src="../static/img/good.svg" alt="" class="admin_svg"> </a>
+                    {% else %}
+                        <p class="header_link">{{user.first_name}} {{user.last_name}}</p>
+                    {% endif %}
+                    <a class="header_link menu_exit" href="{% url 'logout' %}">
+                        <p>Выход</p>
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+        <hr>
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+        <hr>
+        <div class="footer">
+            <p>Приложение создано по заказу ФБУЗ "Центр гигиены и эпидемиологии в Магаданской области" в 2022 году</p>
+            <p>Разработчик: Карпушин Е.Ю.</p>
+        </div>
+    </div>
+</body>
+</html>

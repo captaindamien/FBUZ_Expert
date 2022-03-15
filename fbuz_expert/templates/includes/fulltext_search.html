@@ -1,0 +1,9 @@
+<div id="form2">
+    <form action="." method="post" class="search_form">
+        {% csrf_token %}
+        <input type="text" id="anything" name="anything" class="form_input">
+        <input type="submit" value="Искать" class="search_btn">
+    </form>
+    <span style="font-style: italic; opacity: 0.5; margin: 0 10px;">Примечание: Для поиска по дате используйте формат ГГГГ-ММ-ДД. Пример: 2022-01-31</span>
+</div>
+<hr>

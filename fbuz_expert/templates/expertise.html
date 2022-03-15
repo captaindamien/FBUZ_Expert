@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Экспертиза № {{exp.exp_number}}
+{% endblock %}
+
+{% block content %}
+<!--  <form enctype="multipart/form-data">-->
+<!--      <input type="file" name="myfile1">-->
+<!--  </form>-->
+  <form action="." method="post" enctype="multipart/form-data" class="exp_form">
+      {% csrf_token %}
+      {{ form }}
+      {% if exp.creator == request.user %}
+        <input type="submit" value="Сохранить изменения" class="btn">
+      {% else %}
+        <input type="submit" value="Ред. запрещено" class="btn" disabled>
+      {% endif %}
+  </form>
+{% endblock %}

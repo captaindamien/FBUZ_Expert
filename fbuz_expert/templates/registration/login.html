@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Вход
+{% endblock %}
+
+{% block content %}
+  {% if form.errors %}
+    <p class="log_text">Введен неправильный логин или пароль</p>
+  {% endif %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p class="log_text">У вас нет доступа к этой странице</p>
+    {% else %}
+      <p class="log_text">Пожалуйста введите логин и пароль, чтобы получить доступ к этой странице</p>
+    {% endif %}
+  {% endif %}
+
+  <form method="post" action="{% url 'login' %}" class="exp_form">
+    {% csrf_token %}
+      Имя учетной записи
+      {{ form.username }}
+      Пароль
+      {{ form.password }}
+    <input type="submit" value="Вход" class="btn"/>
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+{% endblock %}

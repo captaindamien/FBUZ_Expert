@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="{% static 'js/tr.js' %}"></script>
+{% endblock %}
+
+{% block title %}
+    Поиск
+{% endblock %}
+
+{% block content %}
+    <!-- полнотекстовый поиск -->
+    {% include 'includes/fulltext_search.html' %}
+    {% if search_date %}
+        <div id="table1" class="table1" style="padding: 12px;">
+            {% include 'includes/table.html' with expertises=search_date %}
+        </div>
+    {% else %}
+        По вашему запросу ничего не найдено.
+    {% endif %}
+{% endblock %}
